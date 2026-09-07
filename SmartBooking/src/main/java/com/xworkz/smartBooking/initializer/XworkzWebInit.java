@@ -1,4 +1,4 @@
-package com.xworkz.smartBooking.configuration;
+package com.xworkz.smartBooking.initializer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class XworkzWebInit extends AbstractAnnotationConfigDispatcherServletInitializer
@@ -13,11 +13,12 @@ public class XworkzWebInit extends AbstractAnnotationConfigDispatcherServletInit
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[0];
+        return new Class[]{com.xworkz.smartBooking.config.FlightBookConfig.class,
+                          com.xworkz.smartBooking.config.TrainBookConfig.class};
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[0];
+        return new String[]{"/"};
     }
 }
