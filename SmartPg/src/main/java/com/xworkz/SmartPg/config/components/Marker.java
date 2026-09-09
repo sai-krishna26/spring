@@ -1,6 +1,6 @@
-package com.xworkz.SmartPg;
+package com.xworkz.SmartPg.config.components;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,3 +9,4 @@ public class Marker {
         System.out.println("Marker created");
     }
 }
+

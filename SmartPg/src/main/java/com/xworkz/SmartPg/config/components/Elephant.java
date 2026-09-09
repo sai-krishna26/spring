@@ -1,4 +1,4 @@
-package com.xworkz.SmartPg;
+package com.xworkz.SmartPg.config.components;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

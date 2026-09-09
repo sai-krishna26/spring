@@ -1,9 +1,9 @@
-package com.xworkz.SmartPg;
+package com.xworkz.SmartPg.config.components;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@Component
 public class Bottle {
 
     private Perfume perfume;
@@ -16,11 +16,13 @@ public class Bottle {
     }
 
     @Autowired
-    public Bottle(Perfume perfume,Paint paint,Glue glue)
+    public Bottle(Perfume perfume, Paint paint, Glue glue)
     {
         System.out.println("Bottle(perfume,paint,glue) created");
         this.perfume=perfume;
         this.paint=paint;
         this.glue=glue;
     }
+
+
 }

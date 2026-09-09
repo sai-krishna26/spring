@@ -1,4 +1,4 @@
-package com.xworkz.SmartPg;
+package com.xworkz.SmartPg.config.components;
 
 import org.springframework.stereotype.Component;
 
