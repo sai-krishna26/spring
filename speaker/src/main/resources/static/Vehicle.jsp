@@ -8,24 +8,16 @@
         <form action="vehicle" method="post">
             <div class="form-group">
                 <label for="vehicleNumber">Vehicle Number:</label>
-                <input type="text" id="vehicleNumber" name="vehicleNumber" required minlength="3" maxlength="30" placeholder="Enter vehicle number">
+                <input type="text" id="vehicleNumber" name="vehicleNumber" required value="${dto.vehicleNumber}">
             </div>
             <br>
 
             <div class="form-group">
                 <label for="vehicleBrand">Vehicle Brand:</label>
                 <select id="vehicleBrand" name="vehicleBrand" required>
-                    <option value="">-- Select Brand --</option>
-                    <option value="Toyota">Toyota</option>
-                    <option value="Honda">Honda</option>
-                    <option value="Ford">Ford</option>
-                    <option value="BMW">BMW</option>
-                    <option value="Mercedes">Mercedes</option>
-                    <option value="Audi">Audi</option>
-                    <option value="Hyundai">Hyundai</option>
-                    <option value="Maruti">Maruti</option>
-                    <option value="Tata">Tata</option>
-                    <option value="Mahindra">Mahindra</option>
+                    <c:forEach items="${vehicleBrand}" var="brand">
+                        <option value="${brand}">${brand}</option>
+                    </c:forEach>
                 </select>
             </div>
 
@@ -34,22 +26,16 @@
             <div class="form-group">
                 <label for="vehicleModel">Vehicle Model:</label>
                 <select id="vehicleModel" name="vehicleModel" required>
-                    <option value="">-- Select Model --</option>
-                    <option value="Sedan">Sedan</option>
-                    <option value="SUV">SUV</option>
-                    <option value="Hatchback">Hatchback</option>
-                    <option value="Coupe">Coupe</option>
-                    <option value="Convertible">Convertible</option>
-                    <option value="MPV">MPV</option>
-                    <option value="Pickup">Pickup</option>
-                    <option value="Wagon">Wagon</option>
+                    <c:forEach items="${vehicleModel}" var="model">
+                        <option value="${model}">${model}</option>
+                    </c:forEach>
                 </select>
             </div>
 
             <br>
             <div class="form-group">
                 <label for="rentalAmount">Rental Amount:</label>
-                <input type="number" id="rentalAmount" name="rentalAmount" required min="0" step="0.01" placeholder="Enter rental amount">
+                <input type="number" id="rentalAmount" name="rentalAmount" required value="${dto.rentalAmount}">
             </div>
 
             <br>
@@ -57,9 +43,9 @@
             <div class="form-group">
                 <label for="availability">Availability:</label>
                 <select id="availability" name="availability" required>
-                    <option value="">-- Select Availability --</option>
-                    <option value="true">Available</option>
-                    <option value="false">Not Available</option>
+                    <c:forEach items="${vehicleAvail}" var="avail">
+                        <option value="${avail}">${avail}</option>
+                    </c:forEach>
                 </select>
             </div>
 
@@ -68,9 +54,8 @@
             <button type="submit" class="submit-btn">Submit</button>
 
             ${success}
-            ${errors}
             <c:forEach items="${errors}" var="error">
-                <div class="alert alert-danger">${error.defaultMessage}</div>
+                <div style="color: red">${error.defaultMessage}</div>
             </c:forEach>
         </form>
     </div>

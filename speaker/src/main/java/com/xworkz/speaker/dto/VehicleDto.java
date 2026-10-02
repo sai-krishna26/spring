@@ -22,11 +22,11 @@ public class VehicleDto {
     @Size(min = 3, max = 20,message = "vehicle Brand in the range of 3 to 20")
     private String vehicleBrand;
 
-    @NotNull
+    @NotNull(message = "Rental amount Can not be null")
     @Positive(message = "Rental amount must be greater than 0")
     private Double rentalAmount;
 
-    @NotNull
-    private Boolean availability;
+    @NotNull(message = "Availability Can not be null")
+    private String availability;
 
 }
