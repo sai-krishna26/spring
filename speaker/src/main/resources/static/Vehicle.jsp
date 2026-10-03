@@ -25,10 +25,10 @@
 <body>
     <div class="form-container">
         <h2>Vehicle Purchase Form</h2>
-        <form action="vehicle" method="post">
+        <form action="Vehicle" method="post">
             <div class="form-group">
                 <label for="vehicleNumber">Vehicle Number:</label>
-                <input type="text" id="vehicleNumber" name="vehicleNumber" required value="${dto.vehicleNumber}">
+                <input type="text" id="vehicleNumber" placeholder="KA-33-S-0662"  name="vehicleNumber" required value="${dto.vehicleNumber}">
             </div>
             <br>
 
@@ -73,7 +73,10 @@
 
             <button type="submit" class="submit-btn">Submit</button>
 
-            ${success}
+            <br>
+            <br>
+
+            <div style="color: green">${success}</div>
             <c:forEach items="${errors}" var="error">
                 <div style="color: red">${error.defaultMessage}</div>
             </c:forEach>

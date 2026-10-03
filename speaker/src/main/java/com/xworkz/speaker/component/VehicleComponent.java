@@ -3,7 +3,7 @@ package com.xworkz.speaker.component;
 import com.xworkz.speaker.dto.VehicleDto;
 import com.xworkz.speaker.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Component
-@RequestMapping("/vehicle")
+@Controller
+@RequestMapping("/Vehicle")
 public class VehicleComponent {
 
     List<String> vehicleBrand;
@@ -39,9 +39,9 @@ public class VehicleComponent {
     }
 
     @PostMapping
-    public String vehicleStart(@Valid VehicleDto vehicleDto, Model model , BindingResult bindingResult)
+    public String vehicleStart(@Valid VehicleDto vehicleDto, BindingResult bindingResult, Model model)
     {
-        System.out.println("Running vehicleStart() in VehicleComponent");
+        System.out.println("Running vehicleStart() in PostMapping");
         if(bindingResult.hasErrors())
         {
             model.addAttribute("error", "Validation failed. Please check the form.");
@@ -60,8 +60,7 @@ public class VehicleComponent {
             model.addAttribute("vehicleBrand", vehicleBrand);
             model.addAttribute("vehicleModel", vehicleModel);
             model.addAttribute("vehicleAvail", vehicleAvail);
-            return "Vehicle";
-
+            return "Vehicle.jsp";
     }
 
     @GetMapping
@@ -70,9 +69,9 @@ public class VehicleComponent {
 
          model.addAttribute("vehicleBrand", vehicleBrand);
 
-        model.addAttribute("vehicleModel", vehicleModel);
+         model.addAttribute("vehicleModel", vehicleModel);
 
-        model.addAttribute("vehicleAvail", vehicleAvail);
+         model.addAttribute("vehicleAvail", vehicleAvail);
 
         return "Vehicle.jsp";
     }
@@ -80,15 +79,4 @@ public class VehicleComponent {
     @Autowired
     private VehicleService vehicleService;
 
-
-//    @GetMapping
-//    public String onVehiclePurchase(Model model) {
-//        System.out.println("running onVehiclePurchase(), loading VehiclePurchase.jsp");
-//
-//        List<String> vehicleTypes = Stream.of("Car", "Bike", "Truck", "SUV", "Van", "EV CAR","EV Bike").collect(Collectors.toList());
-//
-//        model.addAttribute("vehicleTypes",vehicleTypes);
-//
-//        return "VehiclePurchase.jsp";
-//    }
     }

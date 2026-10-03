@@ -15,4 +15,17 @@ public class WebConfigurator implements WebMvcConfigurer {
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("classpath:/static/images/");
     }
+
+//    @Bean
+//    public InternalResourceViewResolver viewResolver() {
+//
+//        InternalResourceViewResolver resolver =
+//                new InternalResourceViewResolver();
+//
+//        resolver.setPrefix("/WEB-INF/views/");
+//        resolver.setSuffix(".jsp");
+//
+//        return resolver;
+//    }
+
 }

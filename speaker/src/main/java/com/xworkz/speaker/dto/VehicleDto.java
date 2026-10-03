@@ -2,15 +2,16 @@ package com.xworkz.speaker.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 public class VehicleDto {
 
     @NotBlank
+    @Pattern(
+            regexp = "^[A-Z]{2}[ -]?[0-9]{1,2}[ -]?[A-Z]{1,3}[ -]?[0-9]{4}$",
+            message = "Enter a valid vehicle number"
+    )
     @Size(min = 3, max = 30,message = "vehicle Number in the range of 3 to 30")
     private String vehicleNumber;
 
