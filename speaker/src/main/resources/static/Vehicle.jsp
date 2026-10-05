@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
    <title>Vehicle Purchase Form</title>
 
@@ -83,3 +85,4 @@
         </form>
     </div>
 </body>
+</html>

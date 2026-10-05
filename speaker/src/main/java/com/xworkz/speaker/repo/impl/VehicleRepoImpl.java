@@ -9,5 +9,6 @@ public class VehicleRepoImpl implements VehicleRepo {
     @Override
     public void save(VehicleDto vehicleDto) {
         System.out.println("Running save() in VehicleRepoImpl");
+        System.out.println("save the valid dto in database");
     }
 }
