@@ -3,6 +3,10 @@ package com.xworkz.speaker.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -22,27 +26,29 @@ public class DataBaseConfiguration {
         System.out.println("Running dataSource() in DataBaseConfiguration");
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/your_database");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/poc");
         dataSource.setUsername("root");
-        dataSource.setPassword("password");
+        dataSource.setPassword("root");
         return dataSource;
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
+    {
         System.out.println("Running entityManagerFactory() in DataBaseConfiguration");
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setDataSource(dataSource);
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factory.setPackagesToScan("com.xworkz.speaker.dto");
+
         return factory;
     }
 
     @Bean
-    public PlatformTransactionManger platformTransactionManager(EntityManagerFactory entityManagerFactory)
+    public PlatformTransactionManager platformTransactionManager(EntityManagerFactory entityManagerFactory)
     {
         System.out.println("Running transactionManger() in DataBaseConfiguration");
-        JPATransactionManger jpaTransactionManger=new JPATransactionManger(entityManagerFactory);
+        JpaTransactionManager jpaTransactionManger=new JpaTransactionManager(entityManagerFactory);
         jpaTransactionManger.setEntityManagerFactory(entityManagerFactory);
         return jpaTransactionManger;
     }
