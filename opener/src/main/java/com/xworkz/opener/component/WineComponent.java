@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import java.beans.PropertyEditorSupport;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -42,7 +41,6 @@ public class WineComponent {
     }
 
 
-
     @Autowired
     private WineService wineService;
 
@@ -59,7 +57,7 @@ public class WineComponent {
     }
 
     @PostMapping("/Wine")
-    public String takeWine(@Valid WineDto wineDto, BindingResult bindingResult, Model model)
+    public String takeWine(Model model, @Valid WineDto wineDto, BindingResult bindingResult)
     {
         System.out.println("takeWine() started with @PostMapping");
         if(bindingResult.hasErrors())
@@ -74,7 +72,7 @@ public class WineComponent {
         {
             System.out.println(wineDto);
             System.out.println("Validation passed");
-            wineService.save(wineDto);
+            this.wineService.save(wineDto);
             model.addAttribute("message","Wine saved successfully");
             model.addAttribute("dto",new WineDto());
             model.addAttribute("companyLocation",companyLocation);
@@ -82,12 +80,22 @@ public class WineComponent {
         return "Wine.jsp";
     }
 
-    @GetMapping("/Wine")
-    public String startWine(Model model)
-    {
-        System.out.println("startWine() started with @GetMapping");
-        model.addAttribute("companyLocation",companyLocation);
+//    @GetMapping("/Wine")
+//    public String startWine(Model model)
+//    {
+//        System.out.println("startWine() started with @GetMapping");
+//        model.addAttribute("companyLocation",companyLocation);
+//
+//        return "Wine.jsp";
+//    }
 
-        return "Wine.jsp";
+    @GetMapping("/showAll")
+    public String showAll(Model model)
+    {
+        System.out.println("showAll() started with @GetMapping");
+        List<WineDto> dtoList = this.wineService.findAll();
+        model.addAttribute("dtoList",dtoList);
+        return "showAll.jsp";
     }
+
 }

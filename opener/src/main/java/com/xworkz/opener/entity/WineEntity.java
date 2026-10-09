@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "WineInfo")
+@Table(name = "wine_Info")
 @Getter
 @Setter
 @ToString
