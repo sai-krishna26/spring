@@ -14,7 +14,9 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
-
+@NamedQueries({
+    @NamedQuery(name = "findAll", query = "SELECT e FROM WineEntity e")
+})
 public class WineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

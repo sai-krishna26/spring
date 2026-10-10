@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import java.beans.PropertyEditorSupport;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/Wine")
 public class WineComponent {
 
     private List<String> companyLocation;
@@ -44,19 +39,8 @@ public class WineComponent {
     @Autowired
     private WineService wineService;
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String text) throws IllegalArgumentException {
-                if (text != null && !text.isEmpty()) {
-                    setValue(LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-                }
-            }
-        });
-    }
 
-    @PostMapping("/Wine")
+    @PostMapping
     public String takeWine(Model model, @Valid WineDto wineDto, BindingResult bindingResult)
     {
         System.out.println("takeWine() started with @PostMapping");
@@ -77,25 +61,25 @@ public class WineComponent {
             model.addAttribute("dto",new WineDto());
             model.addAttribute("companyLocation",companyLocation);
         }
-        return "Wine.jsp";
+        return "Wine";
     }
 
-//    @GetMapping("/Wine")
-//    public String startWine(Model model)
-//    {
-//        System.out.println("startWine() started with @GetMapping");
-//        model.addAttribute("companyLocation",companyLocation);
-//
-//        return "Wine.jsp";
-//    }
+    @GetMapping
+    public String startWine(Model model)
+    {
+        System.out.println("startWine() started with @GetMapping");
+        model.addAttribute("companyLocation",companyLocation);
+
+        return "Wine";
+    }
 
     @GetMapping("/showAll")
     public String showAll(Model model)
     {
         System.out.println("showAll() started with @GetMapping");
         List<WineDto> dtoList = this.wineService.findAll();
-        model.addAttribute("dtoList",dtoList);
-        return "showAll.jsp";
+        model.addAttribute("wineDtoList",dtoList);
+        return "WineData";
     }
 
 }

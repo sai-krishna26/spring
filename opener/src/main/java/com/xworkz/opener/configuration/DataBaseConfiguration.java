@@ -13,7 +13,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableTransactionManagement
 public class DataBaseConfiguration {
 
     public DataBaseConfiguration()
@@ -34,9 +33,9 @@ public class DataBaseConfiguration {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource)
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
     {
-        System.out.println("Running entityManagerFactoryBean() in DataBaseConfiguration");
+        System.out.println("Running entityManagerFactory() in DataBaseConfiguration");
         LocalContainerEntityManagerFactoryBean factoryBean=new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setPackagesToScan("com.xworkz.opener.entity");

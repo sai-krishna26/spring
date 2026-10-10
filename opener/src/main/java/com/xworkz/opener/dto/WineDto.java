@@ -1,6 +1,5 @@
 package com.xworkz.opener.dto;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,22 +7,19 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 
 @Data
-@ToString
-@Getter
-@Setter
 public class WineDto
 {
     @NotBlank
     @Size(min = 3, max = 30,message="Company name should be between 3 and 30 characters")
     private String companyName;
 
-    @NotBlank
     private String location;
 
     @NotBlank
@@ -38,7 +34,6 @@ public class WineDto
     @Size(min = 3, max = 30,message="Variety should be between 3 and 30 characters")
     private String variety;
 
-    @NotNull
     @Positive(message = "Age should be positive")
     private Integer age;
 }

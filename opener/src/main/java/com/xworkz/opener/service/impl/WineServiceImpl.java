@@ -27,8 +27,8 @@ public class WineServiceImpl implements WineService {
         {
             System.out.println("sending dto from service to repo");
             WineEntity wineEntity=new WineEntity();
-            this.wineRepo.save(wineEntity);
             BeanUtils.copyProperties(wineDto,wineEntity);
+            this.wineRepo.save(wineEntity);
             return true;
         }
         return false;
@@ -42,7 +42,7 @@ public class WineServiceImpl implements WineService {
         List<WineEntity> entityList=this.wineRepo.findAll();
         List<WineDto> wineDtoList=new ArrayList<>();
 
-        if(wineDtoList != null)
+        if(entityList != null)
         {
             System.out.println("converting entity to dto");
 
