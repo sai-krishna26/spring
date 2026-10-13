@@ -7,6 +7,9 @@
 </head>
 <body>
     <h4 style="text-align: center;">Wine Data Table</h4>
+
+    <h3 style="color: red;">${error}</h3>
+
     <div class="table-responsive">
         <table class="table table-sm" data-bs-theme="dark">
             <thead>
@@ -17,6 +20,7 @@
                 <th>Manufacturing Date</th>
                 <th>Variety</th>
                 <th>Wine Age</th>
+                <th>Edit</th>
             </tr>
             </thead>
 
@@ -29,12 +33,15 @@
                     <td>${wineDto.mnfDate}</td>
                     <td>${wineDto.variety}</td>
                     <td>${wineDto.age}</td>
+                    <td><a href="editWine?id=${wineDto.id}">Edit</a></td>
                 </tr>
             </c:forEach>
 
             </tbody>
         </table>
     </div>
+
+    <a href="/opener/Wine">Add New Wine</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class WineRepoImpl implements WineRepo {
@@ -35,5 +36,12 @@ public class WineRepoImpl implements WineRepo {
         System.out.println("wineEntiyList count:"+wineEntityList.size());
 
         return wineEntityList;
+    }
+
+    @Override
+    public Optional<WineEntity> findById(Integer id) {
+        System.out.println("findById() method is started in WineRepoImpl");
+        WineEntity wineEntity=this.entityManager.find(WineEntity.class, id);
+        return Optional.ofNullable(wineEntity);
     }
 }

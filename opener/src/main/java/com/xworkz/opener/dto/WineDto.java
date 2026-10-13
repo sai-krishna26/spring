@@ -1,9 +1,6 @@
 package com.xworkz.opener.dto;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -16,6 +13,8 @@ import java.time.LocalDate;
 @Data
 public class WineDto
 {
+    private Integer id;
+
     @NotBlank
     @Size(min = 3, max = 30,message="Company name should be between 3 and 30 characters")
     private String companyName;

@@ -8,9 +8,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,16 +46,38 @@ public class WineServiceImpl implements WineService {
 
         if(entityList != null)
         {
-            System.out.println("converting entity to dto");
+            System.out.println("converting entity to dto in findAll() method of WineServiceImpl");
 
             wineDtoList=entityList.stream().map(entity -> {
                 WineDto wineDto = new WineDto();
                 BeanUtils.copyProperties(entity,wineDto);
+                System.out.println("converted entity:"+wineDto);
                 return wineDto;
             }).collect(Collectors.toList());
         }
         System.out.println("wineDto count:"+wineDtoList.size());
 
         return wineDtoList;
+    }
+
+    @Override
+    public WineDto findById(Integer id) {
+        //return this.wineRepo.findById(id);
+        System.out.println("findById() method is started in WineServiceImpl");
+        if(id>0)
+        {
+            System.out.println("id is valid");
+            Optional<WineEntity> wineEntity=this.wineRepo.findById(id);
+            if(wineEntity.isPresent())
+            {
+                System.out.println("we got a id");
+                WineDto wineDto= new WineDto();
+                BeanUtils.copyProperties(wineEntity.get(), wineDto);
+                return wineDto;
+            }
+        }
+        System.out.println("id is invalid, please check the id");
+
+        return null;
     }
 }

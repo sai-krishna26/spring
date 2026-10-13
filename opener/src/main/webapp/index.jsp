@@ -20,5 +20,8 @@ if (hour < 12) {
 <h3><%= greeting %></h3>
 
 <a href="Wine">Take Wine</a>
+<br>
+<br>
+<a href="Wine/showAll">Show All</a>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -67,7 +68,7 @@ public class WineComponent {
     @GetMapping
     public String startWine(Model model)
     {
-        System.out.println("startWine() started with @GetMapping");
+        System.out.println("startWine() started with @GetMapping in WineComponent");
         model.addAttribute("companyLocation",companyLocation);
 
         return "Wine";
@@ -82,4 +83,20 @@ public class WineComponent {
         return "WineData";
     }
 
+    @GetMapping("/editWine")
+    public String editWine(@RequestParam Integer id, Model model)
+    {
+        System.out.println("editWine() started with @GetMapping in WineComponent");
+        System.out.println("editing wine id:"+id);
+        WineDto wineDto=this.wineService.findById(id);
+
+        if(wineDto!=null) {
+            model.addAttribute("dto",wineDto);
+        }
+        else
+        {
+            model.addAttribute("error","Wine not found with id:"+id);
+        }
+        return "Wine";
+    }
 }
