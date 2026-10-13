@@ -92,10 +92,12 @@ public class WineComponent {
 
         if(wineDto!=null) {
             model.addAttribute("dto",wineDto);
+            model.addAttribute("companyLocation",companyLocation);
         }
         else
         {
             model.addAttribute("error","Wine not found with id:"+id);
+            model.addAttribute("companyLocation",companyLocation);
         }
         return "Wine";
     }

@@ -31,7 +31,7 @@
                     <label for="location" class="form-label">Location</label>
                     <select class="form-select" id="location" name="location" required>
                         <c:forEach items="${companyLocation}" var="location">
-                            <option value="${location}">${location}</option>
+                            <option value="${location}" ${dto.location == location ? 'selected' : ''}>${location}</option>
                         </c:forEach>
                     </select>
                 </div>
