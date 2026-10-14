@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface WineRepo {
     public boolean save(WineEntity wineEntity);
+    public boolean update(WineEntity wineEntity);
     public List<WineEntity> findAll();
     public Optional<WineEntity> findById(Integer id);
 }

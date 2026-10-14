@@ -30,7 +30,13 @@ public class WineServiceImpl implements WineService {
             System.out.println("sending dto from service to repo");
             WineEntity wineEntity=new WineEntity();
             BeanUtils.copyProperties(wineDto,wineEntity);
-            this.wineRepo.save(wineEntity);
+            if(wineDto.getId() != null && wineDto.getId() > 0) {
+                System.out.println("Updating existing record with id: " + wineDto.getId());
+                this.wineRepo.update(wineEntity);
+            } else {
+                System.out.println("Saving new record");
+                this.wineRepo.save(wineEntity);
+            }
             return true;
         }
         return false;
@@ -51,7 +57,7 @@ public class WineServiceImpl implements WineService {
             wineDtoList=entityList.stream().map(entity -> {
                 WineDto wineDto = new WineDto();
                 BeanUtils.copyProperties(entity,wineDto);
-                System.out.println("converted entity:"+wineDto);
+                //System.out.println("converted entity:"+wineDto);
                 return wineDto;
             }).collect(Collectors.toList());
         }
@@ -62,7 +68,6 @@ public class WineServiceImpl implements WineService {
 
     @Override
     public WineDto findById(Integer id) {
-        //return this.wineRepo.findById(id);
         System.out.println("findById() method is started in WineServiceImpl");
         if(id>0)
         {

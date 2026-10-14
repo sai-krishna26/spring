@@ -27,6 +27,13 @@ public class WineRepoImpl implements WineRepo {
     }
 
     @Override
+    public boolean update(WineEntity wineEntity) {
+        System.out.println("update method started in WineRepoImpl");
+        entityManager.merge(wineEntity);
+        return true;
+    }
+
+    @Override
     public List<WineEntity> findAll() {
         System.out.println("findAll() method is started in WineRepoImpl");
         List<WineEntity> wineEntityList = this.entityManager

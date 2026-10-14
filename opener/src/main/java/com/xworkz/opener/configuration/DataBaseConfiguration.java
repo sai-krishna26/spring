@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 public class DataBaseConfiguration {
@@ -39,8 +40,19 @@ public class DataBaseConfiguration {
         LocalContainerEntityManagerFactoryBean factoryBean=new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setPackagesToScan("com.xworkz.opener.entity");
+        factoryBean.setJpaProperties(properties());
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return factoryBean;
+    }
+
+    @Bean
+    public Properties properties()
+    {
+        Properties properties=new Properties();
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.show_sql", true);
+        properties.put("hibernate.hbm2ddl.auto", "update");
+        return properties;
     }
 
     @Bean

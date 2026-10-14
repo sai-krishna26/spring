@@ -33,7 +33,7 @@
                     <td>${wineDto.mnfDate}</td>
                     <td>${wineDto.variety}</td>
                     <td>${wineDto.age}</td>
-                    <td><a href="editWine?id=${wineDto.id}">Edit</a></td>
+                    <td><a href="${pageContext.request.contextPath}/Wine/editWine?id=${wineDto.id}">Edit</a></td>
                 </tr>
             </c:forEach>
 

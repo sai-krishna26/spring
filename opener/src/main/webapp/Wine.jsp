@@ -18,6 +18,7 @@
             </a>
 
             <form action="${pageContext.request.contextPath}/Wine" method="post">
+                <input type="hidden" name="id" value="${dto.id}">
 
                 <div class="form-field mb-3">
                     <label for="companyName" class="form-label">Company Name</label>
