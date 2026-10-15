@@ -85,4 +85,10 @@ public class WineServiceImpl implements WineService {
 
         return null;
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        System.out.println("deleteById() method is started in WineServiceImpl");
+        wineRepo.deleteById(id);
+    }
 }

@@ -11,4 +11,5 @@ public interface WineRepo {
     public boolean update(WineEntity wineEntity);
     public List<WineEntity> findAll();
     public Optional<WineEntity> findById(Integer id);
+    public void deleteById(Integer id);
 }

@@ -9,6 +9,7 @@
     <h4 style="text-align: center;">Wine Data Table</h4>
 
     <h3 style="color: red;">${error}</h3>
+    <h3 style="color: green;">${message}</h3>
 
     <div class="table-responsive">
         <table class="table table-sm" data-bs-theme="dark">
@@ -21,6 +22,7 @@
                 <th>Variety</th>
                 <th>Wine Age</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </thead>
 
@@ -33,7 +35,8 @@
                     <td>${wineDto.mnfDate}</td>
                     <td>${wineDto.variety}</td>
                     <td>${wineDto.age}</td>
-                    <td><a href="${pageContext.request.contextPath}/Wine/editWine?id=${wineDto.id}">Edit</a></td>
+                    <td><a href="${pageContext.request.contextPath}/Wine/editWine?id=${wineDto.id}"><h6 style="color: orange;">Edit</h6></a></td>
+                    <td><a href="${pageContext.request.contextPath}/Wine/delete?id=${wineDto.id}" onclick="return confirm('Are you sure you want to delete this wine?')"><h6 style="color: red;">Delete</h6></a></td>
                 </tr>
             </c:forEach>
 

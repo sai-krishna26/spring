@@ -125,4 +125,16 @@ public class WineComponent {
         }
         return "WineUpdate";
     }
+
+    @GetMapping("/delete")
+    public String deleteWine(@RequestParam("id")Integer id,Model model) {
+        System.out.println("deleteWine() started with @PostMapping in WineComponent");
+        this.wineService.deleteById(id);
+        model.addAttribute("message","Wine deleted successfully");
+
+        List<WineDto> wineDtoList = this.wineService.findAll();
+        model.addAttribute("wineDtoList", wineDtoList);
+
+        return "WineData";
+    }
 }
